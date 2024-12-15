@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@corenas/core": ["../core/src"],
+      "@corenas/services": ["../services/src"],
+      "@corenas/app-framework": ["../app-framework/src"],
+      "@corenas/calculator": ["../apps/calculator/src"],
+      "@corenas/notepad": ["../apps/notepad/src"],
+      "@corenas/settings": ["../apps/settings/src"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "../core" },
+    { "path": "../services" },
+    { "path": "../app-framework" },
+    { "path": "../apps/calculator" },
+    { "path": "../apps/notepad" },
+    { "path": "../apps/settings" }
+  ]
+} 

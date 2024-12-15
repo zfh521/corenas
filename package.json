@@ -1,0 +1,18 @@
+{
+  "name": "corenas",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "packages/apps/*"
+  ],
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r --filter @corenas/core --filter @corenas/services --filter @corenas/app-framework --filter @corenas/calculator --filter @corenas/notepad --filter @corenas/settings build && pnpm -r --filter @corenas/desktop build",
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf packages/*/dist && rm -rf packages/*/node_modules && rm -rf packages/apps/*/node_modules && rm -rf packages/apps/*/dist"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.2"
+  }
+} 

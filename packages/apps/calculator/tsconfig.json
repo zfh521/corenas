@@ -1,0 +1,25 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "preserve",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@corenas/core": ["../../core/src"],
+      "@corenas/services": ["../../services/src"],
+      "@corenas/app-framework": ["../../app-framework/src"]
+    },
+    "noEmit": false,
+    "declaration": true,
+    "declarationDir": "./dist"
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "references": [
+    { "path": "../../core" },
+    { "path": "../../services" },
+    { "path": "../../app-framework" }
+  ]
+} 

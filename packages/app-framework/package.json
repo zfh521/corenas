@@ -1,0 +1,20 @@
+{
+  "name": "@corenas/app-framework",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@corenas/core": "file:../core",
+    "@corenas/services": "file:../services",
+    "pinia": "^2.3.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.2"
+  }
+} 
