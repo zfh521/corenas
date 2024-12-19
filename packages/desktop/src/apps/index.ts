@@ -36,6 +36,16 @@ export function registerApps() {
       defaultWidth: 800,
       defaultHeight: 600,
       singleton: true
+    },
+    {
+      id: 'finder',
+      name: 'Finder',
+      version: '1.0.0',
+      icon: 'Setting',
+      component: 'Settings',
+      defaultWidth: 800,
+      defaultHeight: 600,
+      singleton: true
     }
   ]
 
@@ -57,6 +67,9 @@ export function registerApps() {
           case 'settings':
             console.log(`[Apps] Importing settings module...`)
             return import('@corenas/settings')
+          case 'finder':
+            console.log(`[Apps] Importing finder module...`)
+            return import('@corenas/finder')
           default:
             throw new Error(`Unknown app: ${app.id}`)
         }

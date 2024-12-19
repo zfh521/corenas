@@ -9,7 +9,8 @@
     "dev": "tsc --watch"
   },
   "dependencies": {
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "webdav": "^5.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

@@ -190,6 +190,11 @@ onMounted(async () => {
           AppClass = settingsModule.default
           Component = settingsModule.Settings
           break
+        case 'finder':
+          const finderModule = await import('@corenas/finder')
+          AppClass = finderModule.default
+          Component = finderModule.Finder
+          break
         default:
           throw new Error(`Unknown app: ${appId}`)
       }

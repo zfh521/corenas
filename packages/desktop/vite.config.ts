@@ -15,7 +15,8 @@ export default defineConfig({
       '@corenas/app-framework': path.resolve(__dirname, '../app-framework/src'),
       '@corenas/calculator': path.resolve(__dirname, '../apps/calculator/src'),
       '@corenas/notepad': path.resolve(__dirname, '../apps/notepad/src'),
-      '@corenas/settings': path.resolve(__dirname, '../apps/settings/src')
+      '@corenas/settings': path.resolve(__dirname, '../apps/settings/src'),
+      '@corenas/finder': path.resolve(__dirname, '../apps/finder/src')
     }
   },
   server: {
@@ -31,7 +32,8 @@ export default defineConfig({
         '@corenas/app-framework',
         '@corenas/calculator',
         '@corenas/notepad',
-        '@corenas/settings'
+        '@corenas/settings',
+        '@corenas/finder'
       ],
       output: {
         globals: {
@@ -41,7 +43,8 @@ export default defineConfig({
           '@corenas/app-framework': 'CorenasAppFramework',
           '@corenas/calculator': 'Calculator',
           '@corenas/notepad': 'Notepad',
-          '@corenas/settings': 'Settings'
+          '@corenas/settings': 'Settings',
+          '@corenas/finder': 'Finder'
         }
       }
     }

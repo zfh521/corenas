@@ -38,6 +38,5 @@ const showStartMenu = ref(false)
   align-items: center;
   justify-content: center;
   background-color: #0078D4;
-  color: white;
 }
 </style> 

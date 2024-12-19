@@ -34,6 +34,5 @@ const { windows, activeWindowId } = storeToRefs(windowManager)
   align-items: center;
   justify-content: center;
   background-color: #000;
-  color: white;
 }
 </style> 

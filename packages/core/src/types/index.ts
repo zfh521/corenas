@@ -52,4 +52,7 @@ export interface AppInfo {
   defaultWidth: number
   defaultHeight: number
   singleton: boolean
-} 
+}
+
+// 虚拟文件系统接口
+export * from './filesystem';
