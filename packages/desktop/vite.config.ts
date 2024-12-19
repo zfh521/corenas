@@ -5,6 +5,11 @@ import { fileURLToPath } from 'url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+// 获取仓库名称作为base URL
+const base = process.env.NODE_ENV === 'production' 
+  ? '/' + process.env.GITHUB_REPOSITORY?.split('/')[1] 
+  : '/'
+
 export default defineConfig({
   plugins: [vue()],
   resolve: {
@@ -26,18 +31,18 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: [
-        'vue',
-        '@corenas/core',
-        '@corenas/services',
-        '@corenas/app-framework',
-        '@corenas/calculator',
-        '@corenas/notepad',
-        '@corenas/settings',
-        '@corenas/finder'
+        // 'vue',
+        // '@corenas/core',
+        // '@corenas/services',
+        // '@corenas/app-framework',
+        // '@corenas/calculator',
+        // '@corenas/notepad',
+        // '@corenas/settings',
+        // '@corenas/finder'
       ],
       output: {
         globals: {
-          vue: 'Vue',
+          // vue: 'Vue',
           '@corenas/core': 'CorenasCore',
           '@corenas/services': 'CorenasServices',
           '@corenas/app-framework': 'CorenasAppFramework',
@@ -47,6 +52,16 @@ export default defineConfig({
           '@corenas/finder': 'Finder'
         }
       }
-    }
-  }
+    },
+    outDir: 'dist',
+    assetsDir: 'assets',
+    // 生成静态资源的存放路径
+    assetsInlineLimit: 4096,
+    // 小于此阈值的导入或引用资源将内联为 base64 编码
+    cssCodeSplit: true,
+    // 启用/禁用 CSS 代码拆分
+    sourcemap: false,
+    // 构建后是否生成 source map 文件
+  },
+  base: base,  // 设置基础路径
 }) 

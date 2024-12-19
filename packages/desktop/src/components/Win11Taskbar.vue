@@ -13,8 +13,7 @@
         :class="{ active: window.id === activeWindowId }"
         @click="toggleWindow(window)"
       >
-        <el-icon v-if="window.icon"><component :is="window.icon" /></el-icon>
-        <el-icon v-else><Document /></el-icon>
+        <el-icon><component :is="getIconComponent(window.icon)" /></el-icon>
       </button>
     </div>
     <div class="taskbar-tray">
@@ -25,7 +24,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { Monitor, Document } from '@element-plus/icons-vue'
+import { Monitor, Document, Setting } from '@element-plus/icons-vue'
 import { useWindowManager } from '@corenas/services'
 import { storeToRefs } from 'pinia'
 
@@ -59,6 +58,19 @@ const emit = defineEmits(['toggle-start'])
 
 const toggleStartMenu = () => {
   emit('toggle-start')
+}
+
+const getIconComponent = (icon: string | undefined) => {
+  switch (icon) {
+    case 'Calculator':
+      return Monitor
+    case 'Document':
+      return Document
+    case 'Setting':
+      return Setting
+    default:
+      return Document
+  }
 }
 </script>
 

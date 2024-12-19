@@ -1,11 +1,11 @@
-import { InMemoryFileSystem, FileSystemNode,WebDavFileSystem, FileSystemAPI } from '@corenas/core';
+import { InMemoryFileSystem, FileSystemNode, FileSystemAPI } from '@corenas/core';
 
 export class FinderCore {
   private fs: FileSystemAPI;
   private currentPath: string = '/';
 
   constructor() {
-    this.fs = new WebDavFileSystem('http://localhost:9191/',"admin","password");
+    this.fs = new InMemoryFileSystem();
     this.initializeFileSystem();
   }
 

@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]  # 当推送到main分支时触发
+  workflow_dispatch:    # 允许手动触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+          run_install: false
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Build Project
+        run: pnpm build
+        env:
+          NODE_ENV: production
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: packages/desktop/dist  # 部署desktop的构建输出
+          branch: gh-pages              # 部署到gh-pages分支
+          clean: true                   # 清理旧文件

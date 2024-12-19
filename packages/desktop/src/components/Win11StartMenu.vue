@@ -15,8 +15,7 @@
           class="app-item"
           @click="launchApp(app)"
         >
-          <el-icon v-if="app.icon"><component :is="app.icon" /></el-icon>
-          <el-icon v-else><Document /></el-icon>
+          <el-icon><component :is="getIconComponent(app.icon)" /></el-icon>
           <span>{{ app.title }}</span>
         </button>
       </div>
@@ -26,7 +25,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import { Search, Document } from '@element-plus/icons-vue'
+import { Search, Document, Monitor, Setting } from '@element-plus/icons-vue'
 import { getAppRegistry } from '@corenas/app-framework'
 
 const props = defineProps<{
@@ -74,6 +73,19 @@ const launchApp = async (app: any) => {
 const close = () => {
   isVisible.value = false
   emit('update:modelValue', false)
+}
+
+const getIconComponent = (icon: string | undefined) => {
+  switch (icon) {
+    case 'Calculator':
+      return Monitor
+    case 'Document':
+      return Document
+    case 'Setting':
+      return Setting
+    default:
+      return Document
+  }
 }
 </script>
 
