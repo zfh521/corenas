@@ -5,6 +5,10 @@ on:
     branches: [ main ]  # 当推送到main分支时触发
   workflow_dispatch:    # 允许手动触发
 
+# 添加权限配置
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
