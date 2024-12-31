@@ -2,13 +2,11 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import { fileURLToPath } from 'url'
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+
 // 获取仓库名称作为base URL
-const base = process.env.NODE_ENV === 'production' 
-  ? '/' + process.env.GITHUB_REPOSITORY?.split('/')[1] 
-  : '/'
+const base = "/"
 
 export default defineConfig({
   plugins: [vue()],
@@ -32,24 +30,21 @@ export default defineConfig({
     rollupOptions: {
       external: [
         // 'vue',
-        // '@corenas/core',
-        // '@corenas/services',
-        // '@corenas/app-framework',
-        // '@corenas/calculator',
-        // '@corenas/notepad',
-        // '@corenas/settings',
-        // '@corenas/finder'
+        '@corenas/calculator',
+        '@corenas/notepad',
+        '@corenas/settings',
+        '@corenas/finder'
       ],
       output: {
         globals: {
           // vue: 'Vue',
-          '@corenas/core': 'CorenasCore',
-          '@corenas/services': 'CorenasServices',
-          '@corenas/app-framework': 'CorenasAppFramework',
-          '@corenas/calculator': 'Calculator',
-          '@corenas/notepad': 'Notepad',
-          '@corenas/settings': 'Settings',
-          '@corenas/finder': 'Finder'
+          // '@corenas/core': 'CorenasCore',
+          // '@corenas/services': 'CorenasServices',
+          // '@corenas/app-framework': 'CorenasAppFramework',
+          // '@corenas/calculator': 'Calculator',
+          // '@corenas/notepad': 'Notepad',
+          // '@corenas/settings': 'Settings',
+          // '@corenas/finder': 'Finder'
         }
       }
     },

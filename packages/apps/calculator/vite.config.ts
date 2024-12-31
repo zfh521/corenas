@@ -20,7 +20,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'CalculatorApp',
       formats: ['es'],
-      fileName: (format) => `calculator.${format}.js`
+      fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
       external: ['vue', '@corenas/core', '@corenas/services', '@corenas/app-framework'],

@@ -1,11 +1,13 @@
 package interfaces
 
-import "github.com/zfh521/corenas/internal/models"
+import (
+    "context"
+)
 
-type UserService interface {
-    CreateUser(input *models.UserCreate) (*models.User, error)
-    UpdateUser(id uint, input *models.UserUpdate) (*models.User, error)
-    DeleteUser(id uint) error
-    GetUser(id uint) (*models.User, error)
-    ListUsers(page, limit int) ([]models.User, int64, error)
+type Service interface {
+    // 定义通用的服务接口方法
+    Create(ctx context.Context, dto interface{}) error
+    Update(ctx context.Context, dto interface{}) error
+    Delete(ctx context.Context, id interface{}) error
+    GetByID(ctx context.Context, id interface{}) (interface{}, error)
 } 

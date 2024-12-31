@@ -2,21 +2,20 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
+	"github.com/zfh521/corenas/internal/api/handlers"
 )
 
 func Auth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.GetHeader("Authorization")
 		if token == "" {
-			c.JSON(http.StatusUnauthorized, gin.H{
-				"code":    401,
-				"message": "未授权访问",
-			})
+			handlers.ErrorResponse(c, 401, "unauthorized")
 			c.Abort()
 			return
 		}
-		// TODO: 实现token验证逻辑
+
+		// TODO: 验证token
+
 		c.Next()
 	}
-} 
+}

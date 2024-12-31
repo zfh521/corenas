@@ -21,7 +21,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'FinderApp',
       formats: ['es'],
-      fileName: (format) => `finder.${format}.js`
+      fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
       external: [

@@ -34,6 +34,7 @@ export class AppRegistry {
 
   // 启动应用
   async startApp(appId: string): Promise<string> {
+    debugger
     const moduleLoader = this.appModules.get(appId)
     if (!moduleLoader) {
       throw new Error(`App ${appId} not registered`)

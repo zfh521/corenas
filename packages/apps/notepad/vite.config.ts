@@ -20,7 +20,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'NotepadApp',
       formats: ['es'],
-      fileName: (format) => `notepad.${format}.js`
+      fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
       external: [

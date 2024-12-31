@@ -1,8 +1,10 @@
 package handlers
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/zfh521/corenas/internal/common/response"
+	"github.com/zfh521/corenas/internal/api/handlers"
+	"github.com/zfh521/corenas/internal/modules/auth/models"
 	"github.com/zfh521/corenas/internal/modules/auth/service"
 )
 
@@ -24,17 +26,49 @@ func NewAuthHandler(authService service.AuthService) *AuthHandler {
 // @Success 200 {object} response.Response
 // @Router /api/v1/auth/login [post]
 func (h *AuthHandler) Login(c *gin.Context) {
-	var req LoginRequest
+	fmt.Println("login request invoked")
+	var req models.LoginRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
-		response.Error(c, 400, "无效的请求参数")
+		handlers.ErrorResponse(c, 400, err.Error())
 		return
 	}
 
-	token, err := h.authService.Login(req.Username, req.Password)
+	token, err := h.authService.Login(c.Request.Context(), req)
 	if err != nil {
-		response.Error(c, 401, "登录失败")
+		handlers.ErrorResponse(c, 401, err.Error())
 		return
 	}
 
-	response.Success(c, gin.H{"token": token})
-} 
+	handlers.SuccessResponse(c, models.LoginResponse{Token: token})
+}
+
+func (h *AuthHandler) Register(c *gin.Context) {
+	var req models.RegisterRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		handlers.ErrorResponse(c, 400, err.Error())
+		return
+	}
+
+	err := h.authService.Register(c.Request.Context(), req)
+	if err != nil {
+		handlers.ErrorResponse(c, 400, err.Error())
+		return
+	}
+
+	handlers.SuccessResponse(c, nil)
+}
+
+func (h *AuthHandler) Logout(c *gin.Context) {
+	// TODO: 实现登出逻辑
+	handlers.SuccessResponse(c, nil)
+}
+
+func (h *AuthHandler) ChangePassword(c *gin.Context) {
+	// TODO: 实现修改密码逻辑
+	handlers.SuccessResponse(c, nil)
+}
+
+func (h *AuthHandler) GetProfile(c *gin.Context) {
+	// TODO: 实现获取用户信息逻辑
+	handlers.SuccessResponse(c, nil)
+}

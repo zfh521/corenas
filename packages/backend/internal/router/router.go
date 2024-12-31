@@ -2,25 +2,21 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/zfh521/corenas/internal/common/middleware"
+	"github.com/zfh521/corenas/internal/api/middleware"
 	"github.com/zfh521/corenas/internal/modules/auth"
-	"github.com/zfh521/corenas/internal/modules/system"
-	"github.com/zfh521/corenas/internal/modules/manage"
+	"github.com/zfh521/corenas/internal/modules/auth/service"
 )
 
-func SetupRouter(r *gin.Engine) {
-	// 全局中间件
-	r.Use(middleware.Logger())
-	r.Use(middleware.Recovery())
-
-	// API v1
-	v1 := r.Group("/api/v1")
+func SetupRouter(r *gin.Engine, authService service.AuthService) {
+	// API 路由组
+	api := r.Group("/api")
 	
-	// 注册各模块路由
-	auth.RegisterRoutes(v1, authHandler)
-	system.RegisterRoutes(v1, systemHandler)
-	manage.RegisterRoutes(v1, manageHandler)
+	// 注册不需要认证的路由
+	auth.RegisterPublicRoutes(api, authService)
 
-	// Swagger
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-} 
+	// 添加认证中间件
+	api.Use(middleware.Auth())
+	
+	// 注册需要认证的路由
+	auth.RegisterProtectedRoutes(api, authService)
+}

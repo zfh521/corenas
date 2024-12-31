@@ -2,10 +2,9 @@ package server
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/gin-swagger"
 	"github.com/swaggo/files"
-	_ "backend/docs" // 导入swagger文档
-	- "internal/handlers"
+	"github.com/swaggo/gin-swagger"
+	"github.com/zfh521/corenas/internal/handlers"
 )
 
 func NewRouter() *gin.Engine {
@@ -32,7 +31,3 @@ func NewRouter() *gin.Engine {
 
 	return router
 }
-
-func (s *Server) Run() error {
-	return s.router.Run(s.config.Address)
-} 

@@ -1,12 +1,13 @@
 package interfaces
 
-import "github.com/zfh521/corenas/internal/models"
+import (
+    "context"
+)
 
-type UserRepository interface {
-    Create(user *models.User) error
-    Update(user *models.User) error
-    Delete(id uint) error
-    FindByID(id uint) (*models.User, error)
-    FindByEmail(email string) (*models.User, error)
-    List(page, limit int) ([]models.User, int64, error)
+type Repository interface {
+    // 定义通用的仓储接口方法
+    Create(ctx context.Context, entity interface{}) error
+    Update(ctx context.Context, entity interface{}) error
+    Delete(ctx context.Context, id interface{}) error
+    FindByID(ctx context.Context, id interface{}, result interface{}) error
 } 

@@ -50,7 +50,9 @@ export function registerApps() {
   ]
 
   console.log('[Apps] Defined apps:', apps)
-
+  function loadScript(id: string) {
+    return import("/apps/"+id)
+  }
   // 注册每个应用
   apps.forEach(app => {
     console.log(`[Apps] Registering app: ${app.id}`)
@@ -60,16 +62,16 @@ export function registerApps() {
         switch (app.id) {
           case 'calculator':
             console.log(`[Apps] Importing calculator module...`)
-            return import('@corenas/calculator')
+            return loadScript('calculator')
           case 'notepad':
             console.log(`[Apps] Importing notepad module...`)
-            return import('@corenas/notepad')
+            return loadScript('notepad')
           case 'settings':
             console.log(`[Apps] Importing settings module...`)
-            return import('@corenas/settings')
+            return loadScript('settings')
           case 'finder':
             console.log(`[Apps] Importing finder module...`)
-            return import('@corenas/finder')
+            return loadScript('finder')
           default:
             throw new Error(`Unknown app: ${app.id}`)
         }

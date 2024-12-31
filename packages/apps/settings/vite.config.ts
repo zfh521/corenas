@@ -20,7 +20,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'SettingsApp',
       formats: ['es'],
-      fileName: (format) => `settings.${format}.js`
+      fileName: (format) => `index.${format}.js`
     },
     rollupOptions: {
       external: [
