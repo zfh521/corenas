@@ -13,7 +13,7 @@ export const useWindowManager = defineStore('windowManager', () => {
   )
 
   // 添加窗口
-  const addWindow = (window: Omit<WindowState, 'zIndex' | 'minimized' | 'maximized'>) => {
+  const addWindow = (window: Omit<WindowState, 'zIndex' | 'minimized' | 'maximized'>): WindowState => {
     const id = window.id || generateId()
     maxZIndex.value++
     const newWindow: WindowState = {
@@ -31,7 +31,7 @@ export const useWindowManager = defineStore('windowManager', () => {
       payload: newWindow
     })
 
-    return id
+    return newWindow
   }
 
   // 移除窗口

@@ -174,30 +174,13 @@ onMounted(async () => {
 
       // 根据应用ID动态导入
       console.log(`[Window] Importing module for ${appId}...`)
-      switch (appId) {
-        case 'calculator':
-          const calculatorModule = await import('@corenas/calculator')
-          AppClass = calculatorModule.default
-          Component = calculatorModule.Calculator
-          break
-        case 'notepad':
-          const notepadModule = await import('@corenas/notepad')
-          AppClass = notepadModule.default
-          Component = notepadModule.Notepad
-          break
-        case 'settings':
-          const settingsModule = await import('@corenas/settings')
-          AppClass = settingsModule.default
-          Component = settingsModule.Settings
-          break
-        case 'finder':
-          const finderModule = await import('@corenas/finder')
-          AppClass = finderModule.default
-          Component = finderModule.Finder
-          break
-        default:
-          throw new Error(`Unknown app: ${appId}`)
+      const module = appRegistry.getAppModule(appId)
+      if (module) {
+        const t = await module()
+        AppClass = t.default
+        Component = t.UI
       }
+      console.log(`[Window] Module imported for ${appId}`)
       console.log(`[Window] Module imported for ${appId}`)
 
       // 创建应用例
@@ -205,7 +188,8 @@ onMounted(async () => {
         console.log(`[Window] Creating app instance for ${appId}...`)
         app.value = new AppClass({ 
           appId, 
-          windowId: props.window.id 
+          windowId: props.window.id,
+          windowState: props.window
         })
         console.log(`[Window] Initializing app ${appId}...`)
         await app.value.init()

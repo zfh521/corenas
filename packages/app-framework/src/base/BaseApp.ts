@@ -1,9 +1,10 @@
-import { EventEmitter, Event, EventHandler, globalEventBus } from '@corenas/core'
+import { EventEmitter, Event, EventHandler, globalEventBus, WindowState } from '@corenas/core'
 import { useStorageManager } from '@corenas/services'
 
 export interface AppContext {
   appId: string
   windowId: string
+  windowState: WindowState
 }
 
 export abstract class BaseApp implements EventEmitter {

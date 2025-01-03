@@ -1,4 +1,4 @@
-import { getAppRegistry, type AppInfo } from '@corenas/app-framework'
+import { getAppRegistry, type AppInfo, type AppModule } from '@corenas/app-framework'
 
 // 注册所有应用
 export function registerApps() {
@@ -50,20 +50,19 @@ export function registerApps() {
   ]
 
   console.log('[Apps] Defined apps:', apps)
-  function loadScript(id: string) {
-    if(id === "calculator") {
-      return import("@corenas/calculator")
+  function loadScript(id: string): Promise<AppModule> {
+    switch (id) {
+      case "calculator":
+        return import("@corenas/calculator") as Promise<AppModule>
+      case "notepad":
+        return import("@corenas/notepad") as Promise<AppModule>
+      case "settings":
+        return import("@corenas/settings") as Promise<AppModule>
+      case "finder":
+        return import("@corenas/finder") as Promise<AppModule>
+      default:
+        return Promise.reject(new Error(`Unknown app id: ${id}`))
     }
-    if(id === "notepad") {
-      return import("@corenas/notepad")
-    }
-    if(id === "settings") {
-      return import("@corenas/settings")
-    }
-    if(id === "finder") {
-      return import("@corenas/finder")
-    }
-    throw new Error(`App ${id} not found`)
   }
   // 注册每个应用
   apps.forEach(app => {

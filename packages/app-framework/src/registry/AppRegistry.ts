@@ -2,15 +2,17 @@ import { AppInfo } from '@corenas/core'
 import { BaseApp, AppContext } from '../base/BaseApp'
 import { AppLifecycle } from '../lifecycle/AppLifecycle'
 import { Pinia } from 'pinia'
+import { Component } from 'vue'
 
 export interface AppModule {
-  default: new (context: AppContext) => BaseApp
+  default: new (context: AppContext) => BaseApp,
+  UI: Component
 }
 
 export class AppRegistry {
   private static instance: AppRegistry
   private lifecycle: AppLifecycle
-  private appModules = new Map<string, () => Promise<AppModule>>()
+  private appModules = new Map<string,() => Promise<AppModule>>()
 
   private constructor(pinia: Pinia) {
     this.lifecycle = AppLifecycle.getInstance(pinia)
@@ -24,6 +26,10 @@ export class AppRegistry {
       AppRegistry.instance = new AppRegistry(pinia)
     }
     return AppRegistry.instance
+  }
+
+  getAppModule(appId: string) {
+    return this.appModules.get(appId)
   }
 
   // 注册应用

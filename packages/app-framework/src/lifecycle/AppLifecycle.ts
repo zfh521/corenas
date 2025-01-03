@@ -65,7 +65,7 @@ export class AppLifecycle {
 
     // 创建窗口
     const windowId = `${appId}-${Date.now()}`
-    this.windowManager.addWindow({
+    const windowState = this.windowManager.addWindow({
       id: windowId,
       title: appInfo.name,
       icon: appInfo.icon,
@@ -73,10 +73,10 @@ export class AppLifecycle {
       height: appInfo.defaultHeight,
       x: Math.random() * (window.innerWidth - appInfo.defaultWidth),
       y: Math.random() * (window.innerHeight - appInfo.defaultHeight)
-    })
+    });
 
     // 创建应用实例
-    const context: AppContext = { appId, windowId }
+    const context: AppContext = { appId, windowId, windowState }
     const app = new AppClass(context)
     
     // 初始化应用
