@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 
 // 获取仓库名称作为base URL
-const base = "/"
+const base = "./"
 
 export default defineConfig({
   plugins: [vue()],
