@@ -51,7 +51,19 @@ export function registerApps() {
 
   console.log('[Apps] Defined apps:', apps)
   function loadScript(id: string) {
-    return import("/apps/"+id)
+    if(id === "calculator") {
+      return import("@corenas/calculator")
+    }
+    if(id === "notepad") {
+      return import("@corenas/notepad")
+    }
+    if(id === "settings") {
+      return import("@corenas/settings")
+    }
+    if(id === "finder") {
+      return import("@corenas/finder")
+    }
+    throw new Error(`App ${id} not found`)
   }
   // 注册每个应用
   apps.forEach(app => {
@@ -59,22 +71,8 @@ export function registerApps() {
     try {
       appRegistry.registerApp(app, () => {
         console.log(`[Apps] Loading module for app: ${app.id}`)
-        switch (app.id) {
-          case 'calculator':
-            console.log(`[Apps] Importing calculator module...`)
-            return loadScript('calculator')
-          case 'notepad':
-            console.log(`[Apps] Importing notepad module...`)
-            return loadScript('notepad')
-          case 'settings':
-            console.log(`[Apps] Importing settings module...`)
-            return loadScript('settings')
-          case 'finder':
-            console.log(`[Apps] Importing finder module...`)
-            return loadScript('finder')
-          default:
-            throw new Error(`Unknown app: ${app.id}`)
-        }
+        /* @vite-ignore */
+        return loadScript(app.id)
       })
       console.log(`[Apps] Successfully registered app: ${app.id}`)
     } catch (error) {

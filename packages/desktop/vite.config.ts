@@ -30,10 +30,10 @@ export default defineConfig({
     rollupOptions: {
       external: [
         // 'vue',
-        '@corenas/calculator',
-        '@corenas/notepad',
-        '@corenas/settings',
-        '@corenas/finder'
+        // '@corenas/calculator',
+        // '@corenas/notepad',
+        // '@corenas/settings',
+        // '@corenas/finder'
       ],
       output: {
         globals: {

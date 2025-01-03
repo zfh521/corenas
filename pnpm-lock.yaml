@@ -188,12 +188,24 @@ importers:
       '@corenas/app-framework':
         specifier: workspace:*
         version: link:../app-framework
+      '@corenas/calculator':
+        specifier: workspace:*
+        version: link:../apps/calculator
       '@corenas/core':
         specifier: workspace:*
         version: link:../core
+      '@corenas/finder':
+        specifier: workspace:*
+        version: link:../apps/finder
+      '@corenas/notepad':
+        specifier: workspace:*
+        version: link:../apps/notepad
       '@corenas/services':
         specifier: workspace:*
         version: link:../services
+      '@corenas/settings':
+        specifier: workspace:*
+        version: link:../apps/settings
       '@element-plus/icons-vue':
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.13(typescript@5.6.3))
